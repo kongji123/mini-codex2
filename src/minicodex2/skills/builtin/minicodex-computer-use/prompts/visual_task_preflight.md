@@ -1,0 +1,14 @@
+[PYTHON SKILL HOOK: browser.visual_task_preflight]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS owns browser/computer tools, screenshots, permissions, logs, evidence, and persistence. This plugin supplies visual-action workflow guidance only.
+- Task: {task}
+- TargetUrl: {url}
+- CurrentResource: {resource}
+- VisualWorkflow:
+  - Observe first: use screenshot, DOM/accessibility, console/network, or existing browser evidence before choosing an action.
+  - Identify the current UI state, target control, expected transition, and possible blockers.
+  - Prefer semantic actions when available, such as selectors/text, before raw coordinates.
+  - Use raw coordinate actions only when visual evidence makes the target unambiguous.
+  - After each meaningful action, observe again and compare the UI against the expected state.
+  - Record screenshot/browser evidence when it supports acceptance or failure diagnosis.
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/visual-action-loop.md') only if deeper computer-use guidance is needed.

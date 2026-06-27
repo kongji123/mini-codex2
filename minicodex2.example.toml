@@ -1,0 +1,61 @@
+[model]
+provider = "openai_compatible"
+base_url = "https://api.openai.com/v1"
+model = "gpt-4.1-mini"
+wire_api = "chat"
+api_key_env = "OPENAI_API_KEY"
+
+[model_profiles.deepseek_flash]
+name = "DeepSeek V4 Flash"
+provider = "deepseek"
+model = "deepseek-v4-flash"
+base_url = "https://api.deepseek.com"
+wire_api = "chat"
+api_key_env = "DEEPSEEK_API_KEY"
+timeout_seconds = 120
+
+[model_profiles.deepseek_pro]
+name = "DeepSeek V4 Pro"
+provider = "deepseek"
+model = "deepseek-v4-pro"
+base_url = "https://api.deepseek.com"
+wire_api = "chat"
+api_key_env = "DEEPSEEK_API_KEY"
+timeout_seconds = 120
+
+[model_profiles.aihub2apiOpenAI]
+name = "aihub2apiOpenAI"
+provider = "aihub2apiOpenAI"
+model = "gpt-5.5"
+base_url = "https://aihub2api.cloud"
+wire_api = "responses"
+api_key_env = "aihub2apiOpenAI_API_KEY"
+timeout_seconds = 120
+
+[ui]
+locale = "zh-CN"
+
+[context]
+trigger_auto_compact_limit_tokens = 200000
+post_compact_ratio = 0.45
+baseline_ratio = 0.28
+runtime_summary_token_budget = 25000
+runtime_section_token_budget = 25000
+model_context_limit_tokens = 500000
+
+[agent]
+max_verified_steps_per_turn = 5
+idle_tick_enabled = true
+idle_tick_interval_seconds = 20
+idle_tick_max = 2
+memory_extraction_enabled = true
+memory_extraction_max_events = 80
+
+[web_search]
+enabled = true
+
+[skills]
+code_guidance_mode = "external"
+active_code_skill = "minicodex-code"
+external_dirs = []
+allow_third_party_primary = false

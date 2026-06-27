@@ -1,0 +1,15 @@
+[PYTHON SKILL HOOK: code.verification_guidance]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS builds/runs verification plans, records results, emits events, and stores evidence. This hook supplies code verification strategy.
+- VerificationRoot: {verification_root}
+- ChangedFiles: {changed_files}
+- PlanReason: {plan_reason}
+- PlanSteps: {plan_steps}
+- RequiresModelDecision: {requires_model_decision}
+- VerificationWorkflow:
+  - Match verification to changed files, nearby project metadata, and user-facing behavior.
+  - Do not treat an unrelated syntax/build check as acceptance evidence for changed files.
+  - Syntax checks are useful first gates, but product behavior usually needs a targeted test, build, API smoke, or browser/UI smoke.
+  - If the generated verification plan targets the wrong subproject or toolchain, inspect nearby files and choose a narrower project command.
+  - When enough concrete evidence satisfies the current acceptance claim, stop exploration and attach or record that evidence.
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/verification-strategy.md') only if deeper verification guidance is needed.

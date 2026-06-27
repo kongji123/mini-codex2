@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minicodex2"
+version = "0.1.0"
+description = "A local code agent runtime for small and medium multi-language projects."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn>=0.27", "httpx2>=0.28"]
+cli = ["typer>=0.12"]
+tui = ["textual>=0.58"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+minicodex2 = "minicodex2.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

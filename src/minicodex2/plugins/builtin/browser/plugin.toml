@@ -1,0 +1,8 @@
+[plugin]
+name = "minicodex-browser"
+domain = "browser"
+source = "builtin"
+trust_level = "trusted"
+description = "Built-in isolated browser automation plugin for local web testing, UI smoke checks, screenshots, console/network diagnostics, and browser evidence."
+tools = ["browser_test"]
+tool_registrar = "tools.py:register_browser_tools"

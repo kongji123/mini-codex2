@@ -1,0 +1,25 @@
+[skill]
+name = "minicodex-computer-use"
+domain = "browser"
+role = "primary"
+priority = 80
+source = "builtin"
+trust_level = "trusted"
+package = "minicodex2"
+description = "Computer-use workflow plugin for visual observation, UI actions, action repair, and evidence-oriented browser/desktop automation."
+capabilities = [
+  "visual_observation",
+  "ui_action_loop",
+  "browser_action_repair",
+  "screenshot_evidence",
+]
+
+[skill.hooks.visual_task_preflight]
+description = "Prepare a visual/browser task by telling the model how to observe before acting."
+reference = "references/visual-action-loop.md"
+python = "hooks.py:visual_task_preflight"
+
+[skill.hooks.action_repair]
+description = "Guide recovery after a browser/computer action fails or does not change the UI as expected."
+reference = "references/action-repair.md"
+python = "hooks.py:action_repair"

@@ -1,0 +1,37 @@
+[skill]
+name = "minicodex-code"
+domain = "code"
+role = "reference"
+priority = 90
+source = "builtin"
+trust_level = "trusted"
+package = "minicodex2"
+description = "Externalized MiniCodex2 coding workflow for project inspection, code edits, verification, integration debugging, work plans, and workflow memory."
+capabilities = [
+  "project_inspection",
+  "code_edit_loop",
+  "verification",
+  "integration_debug",
+  "work_plan",
+  "workflow_memory",
+]
+
+[skill.hooks.project_preflight]
+description = "Prepare a coding turn with project facts while leaving workflow guidance to the Code Skill."
+reference = "references/project-inspection.md"
+python = "hooks.py:project_preflight"
+
+[skill.hooks.diagnostic_first]
+description = "Guide diagnosis when the user reports a failure in a code project."
+reference = "references/integration-debug.md"
+python = "hooks.py:diagnostic_first"
+
+[skill.hooks.tool_failure_repair]
+description = "Guide recovery after a tool call fails during a code task."
+reference = "references/code-change-loop.md"
+python = "hooks.py:tool_failure_repair"
+
+[skill.hooks.verification_guidance]
+description = "Guide code verification strategy after changes or reported failures."
+reference = "references/verification-strategy.md"
+python = "hooks.py:verification_guidance"

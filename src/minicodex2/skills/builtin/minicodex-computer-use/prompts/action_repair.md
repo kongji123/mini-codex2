@@ -1,0 +1,15 @@
+[PYTHON SKILL HOOK: browser.action_repair]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS owns tool execution, retries, screenshots, logs, evidence, and blocked state. This plugin supplies UI-action repair workflow only.
+- Tool: {tool}
+- FailureKind: {failure_kind}
+- FailureExcerpt: {content_excerpt}
+- LastAction: {last_action}
+- RepairWorkflow:
+  - Do not repeat the identical action unless new evidence shows the target state changed.
+  - Re-observe the UI before retrying: screenshot, DOM/accessibility, URL, console, network, or background logs.
+  - Check whether the action failed because the page was not loaded, selector was stale, element was hidden, auth was missing, overlay blocked input, or route/service state changed.
+  - Prefer a more stable selector/text/action target over coordinates when possible.
+  - If the UI is in an unexpected state, navigate or reset to a known state before continuing.
+  - If repeated UI actions fail, return a concrete blocker with evidence rather than guessing.
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/action-repair.md') only if deeper action-repair guidance is needed.

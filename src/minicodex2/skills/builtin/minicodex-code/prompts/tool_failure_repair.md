@@ -1,0 +1,17 @@
+[PYTHON SKILL HOOK: code.tool_failure_repair]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS owns repair counters, blocked state, tool schemas, permissions, logs, and evidence. This hook supplies code-task recovery workflow.
+- Tool: {tool}
+- Arguments: {arguments}
+- FailureKind: {failure_kind}
+- BlockReason: {block_reason}
+- RepairRound: {repair_round}
+- FailureExcerpt: {content_excerpt}
+- RepairWorkflow:
+  - Do not finish with a manual instruction while recovery remains possible.
+  - Use the tool result to correct command, cwd, path, arguments, environment, or project assumptions.
+  - Shell state from a prior command, such as cd, PATH changes, activation, or sourced scripts, does not persist unless encoded in the next tool call.
+  - If a command used an isolated runtime environment, use explicit executable paths or run activation and the finite follow-up command in one command.
+  - Do not run long-running servers through run_command; use start_background_command.
+  - If browser/UI testing failed, use screenshot, console/network details, current routes, services, and logs to choose the next fix or smoke check.
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/code-change-loop.md') only if deeper code-change-loop guidance is needed.

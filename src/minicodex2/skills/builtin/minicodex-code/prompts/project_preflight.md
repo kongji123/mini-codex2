@@ -1,0 +1,17 @@
+[PYTHON SKILL HOOK: code.project_preflight]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS supplied workspace facts, project detection, verification hints, tools, safety, logs, evidence, memory, and persistence. This hook supplies code workflow guidance only.
+- ExpectedAction: {expected_action}
+- WorkspaceRoot: {workspace_root}
+- DetectedTypes: {detected_types}
+- KeyFiles: {key_files}
+- TestSignals: {test_signals}
+- VerificationReason: {verification_reason}
+- VerificationSteps: {verification_steps}
+- CodeWorkflow:
+  - Inspect the workspace before editing; do not guess filenames.
+  - Prefer reading relevant tests, entrypoints, and existing source files before writing.
+  - Make related edits as one coherent batch when they do not depend on new evidence.
+  - After modifying files, let Agent OS verification run before continuing broad exploration.
+  - Do not answer with code-only instructions when file changes are required.
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/project-inspection.md') only if the next step needs deeper project-inspection guidance.

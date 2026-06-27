@@ -1,0 +1,17 @@
+[PYTHON SKILL HOOK: code.diagnostic_first]
+- ActiveSkill: {skill_name}
+- RuntimeBoundary: Agent OS records the reported failure, exposes local tools, and manages evidence. This hook supplies code-project diagnostic workflow.
+- Reason: {reason}
+- UserReport: {user_report}
+- WorkspaceRoot: {workspace_root}
+- ChangedFiles: {changed_files}
+- DiagnosticWorkflow:
+  - Use local evidence before asking the user for screenshots, console output, ports, or project paths.
+  - Inspect recent changed_files and relevant entry/config files.
+  - Inspect project scripts before choosing commands; do not guess start/dev/test commands.
+  - Run the cheapest applicable verification command, such as build/check/test, when available.
+  - For runtime service issues, inspect ports, background logs, startup candidates, and service health.
+  - For cross-layer issues, compare caller references with provider definitions: routes, commands, paths, files, or APIs.
+  - Fix based on local evidence, then rerun the same or equivalent verification/smoke path.
+- ProjectContextSnapshot: {project_context_snapshot}
+- LoadGuidance: call load_skill(name='{skill_name}', reference='references/integration-debug.md') only if deeper integration-debug guidance is needed.
